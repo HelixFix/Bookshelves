@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { initializeApp } from "firebase/app";
 import { environment } from '../environments/environment';
+import firebase from 'firebase/compat/app';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,8 +19,8 @@ const firebaseConfig = {
   messagingSenderId: environment.messagingSenderId,
   appId            : environment.appId
 };
+firebase.initializeApp(firebaseConfig);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+
  }
 }
