@@ -14,6 +14,7 @@ import firebase from 'firebase/compat/app';
 })
 export class AuthGuardService implements CanActivate {
   constructor(private router: Router) {}
+  /* A guard that checks if the user is logged in or not. */
   canActivate(
     _route: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot
@@ -22,7 +23,7 @@ export class AuthGuardService implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           resolve(true);
