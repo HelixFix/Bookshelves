@@ -78,7 +78,8 @@ export class BooksService {
       (bookEl) => {
         if(bookEl === book){
         return true;
-        }
+        } // obligée de rajouter pour l'erreur "not all code paths return a value"?
+          else return bookEl;
       }
     );
     this.books.splice(bookIndexToRemove, 1);
