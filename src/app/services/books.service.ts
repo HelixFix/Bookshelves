@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Book } from '../models/Book.model';
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ export class BooksService {
 
   books: Book[]     = [];
         bookSubject = new Subject<Book[]>();
+        
 
   constructor() { }
 
@@ -24,7 +27,7 @@ export class BooksService {
  * We're going to save the books array to the database
  */
   saveBooks() {
-    firebase.database().ref('./books').set(this.books);
+    firebase.database().ref('/books').set(this.books);
   }
 
 /**
@@ -47,7 +50,7 @@ export class BooksService {
   getSingleBook(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('/books' + id).once('value').then(
+        firebase.database().ref('/books/' + id).once('value').then(
           (data) => {
             resolve(data.val());
           }, (error) => {
